@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block stylesheet %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}" >
+{% endblock %}
+
+{% block content %}
+  <h2 class="hasShadow">Übersicht</h2>
+
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+  <table id="myTable">
+    <tr class="header">
+      {% for HL in headline[1:] %}
+        <th>
+          <h1>{{ HL }}</h1>
+        </th>
+      {% endfor %}
+    </tr>
+    {% for personen in zeilen %}
+      <tr>
+        {% for person in personen[1:] %}
+          <td> {{ person }} </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='javascript/table.js') }}">
+  </script>
+{% endblock %}

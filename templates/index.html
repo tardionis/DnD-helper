@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mein D&D unterstützer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block stylesheet %}
+  {% endblock %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='javascript/index.js') }}">
+</head>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-padding-32">
+  <div class="hasShadow">
+    <h1><b>Mein <span class="w3-tag">D&D</span> unterstützer</b></h1>
+    <p>Welcome to <span class="w3-tag">Powers, items and more</span></p>
+  </div>
+  <b> <a href="/"><button>HOME</a> </b></button>
+   <a href="/kampfsystem"><button>Kampf</button></a>
+  <div class="dropdown">
+    <button class="dropbtn">Ansehen</button>
+    <div class="dropdown-content">
+       <a class="w3-black w3-padding-large w3-margin-bottom w3-margin-top" href="/table/zauber"><button>Zauber</button></a>
+       <a href="/table/attacke"><button>Attacken</button></a>
+       <a href="/table/gegenstand"><button>Items</button></a>
+       <a href="/table/dienstleistung"><button>Dienstleistung</button></a>
+       <a href="/table/fahrzeug"><button>Fahrzeug</button></a>
+       <a href="/table/gift"><button>Gift</button></a>
+       <a href="/table/händler"><button>Händler</button></a>
+       <a href="/table/instrument"><button>Instrument</button></a>
+       <a href="/table/lebenserhaltung"><button>Lebenserhaltungskosten</button></a>
+       <a href="/table/lebewesen"><button>Lebewesen</button></a>
+       <a href="/table/magischeGegenstände"><button>MagischeGegenstände</button></a>
+       <a href="/table/reittier"><button>Reittier</button></a>
+       <a href="/table/rüstung"><button>rüstung</button></a>
+       <a href="/table/spiel"><button>Spiel</button></a>
+       <a href="/table/waffe"><button>Waffe</button></a>
+       <a href="/table/werkzeug"><button>Werkzeug</button></a>
+       <a href="/table/verpflegung"><button>Verpflegung</button></a>
+       <a href="/table/zaumzeug"><button>zaumzeug</button></a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Hinzufügen</button>
+    <div class="dropdown-content">
+      <a href="/anmelden/party"><button>PC </button></a>
+      <a href="/anmelden/zauber"><button>Zauber </button></a>
+      <a href="/anmelden/attacke"><button>Attacken </button></a>
+       <a href="/anmelden/gegenstand"><button>Items </button></a>
+       <a href="/anmelden/dienstleistung"><button>Dienstleistung </button></a>
+       <a href="/anmelden/fahrzeug"><button>Fahrzeug </button></a>
+       <a href="/anmelden/gift"><button>Gift </button></a>
+       <a href="/anmelden/händler"><button>Händler </button></a>
+       <a href="/anmelden/instrument"><button>Instrument </button></a>
+       <a href="/anmelden/lebenserhaltung"><button>Lebenserhaltungskosten </button></a>
+       <a href="/anmelden/lebewesen"><button>Lebewesen </button></a>
+       <a href="/anmelden/magischeGegenstände"><button>MagischeGegenstände </button></a>
+       <a href="/anmelden/reittier"><button>Reittier </button></a>
+       <a href="/anmelden/rüstung"><button>rüstung </button></a>
+       <a href="/anmelden/spiel"><button>Spiel </button></a>
+       <a href="/anmelden/waffe"><button>Waffe </button></a>
+       <a href="/anmelden/werkzeug"><button>Werkzeug </button></a>
+       <a href="/anmelden/verpflegung"><button>Verpflegung </button></a>
+       <a href="/anmelden/zaumzeug"><button>zaumzeug </button></a>
+    </div>
+  </div>
+
+</header>
+
+    {% block content %}
+    {% endblock %}
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+</footer>
+
+</body>
+</html>
