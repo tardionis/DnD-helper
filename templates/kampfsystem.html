@@ -37,7 +37,7 @@
       </span>
       {% for opfer in dieOpfer %}
       <!-- id="defaultOpen" -->
-      <button class="kampfbtn" name="opfer" value={{opfer[0]}} onclick="opferWahl('{{opfer[0]}}', '{{opfer[4]}}')">
+      <button class="kampfbtn" name="" value={{opfer[0]}} onclick="opferWahl('{{opfer[0]}}', '{{opfer[4]}}')">
         {% for i in range(1, len) %}
         {{opferHeadline[i]}} : {{opfer[i]}}<br>
         {% endfor %}
@@ -66,7 +66,7 @@
     </div>
 
 
-    <div id="attacke" class="divTableRow" style="display:none">
+    <div id="ww" class="divTableRow" style="display:none">
       {% if attacke %}
       <div class="">
         <h2>Attacke:</h2>

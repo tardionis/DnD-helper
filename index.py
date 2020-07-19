@@ -64,6 +64,13 @@ def Kampfsystem():
 
 @app.route("/table/<table>",methods = ["POST","GET"])
 def table(table):
+    if request.method == "POST":
+        print('Yes! I was here!')
+        if 'bin' in request.form:
+            garbage = request.form["bin"]
+            bin(garbage, table)
+            print("der Button wurde gedrückt!");
+    print("Hallo")
     return pers("table.html", table)
 
 @app.route("/anmelden/<table>",methods = ["POST","GET"])

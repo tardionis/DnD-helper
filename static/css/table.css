@@ -31,7 +31,7 @@ tr {
   color: black;
 }
 
-th, tr:nth-child(odd) {
+tr:nth-child(odd) {
   background-color: black;
   color: white;
 }
@@ -39,6 +39,32 @@ th, tr:nth-child(odd) {
 a:checked {
   color: inherit;
   text-decoration: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  margin-right: 4px;
+  color: transparent;
+  padding: 0;
+  box-shadow: none;
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  background-position: center;
+}
+
+.bin {
+  background-image: url('./images/bin.svg');
+}
+
+.pencil {
+  background-image: url('./images/pencil.svg');
 }
 
 #myInput {

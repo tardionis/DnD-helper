@@ -17,3 +17,9 @@ function myFunction() {
     }
   }
 }
+
+
+function del(bin) {
+  var really = confirm(bin);
+  return really;
+}

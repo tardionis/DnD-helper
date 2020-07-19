@@ -31,30 +31,35 @@ def curToStringTitle(liste):
 
 def invenGegenstand(user):
     cur = get_db().cursor()
-    return cur.execute("select gegenstand.name, gegenstand.effecte, gegenstand.beschreibung from gegenstand, inventar using('gid') where pid= " + user + ";")
+    return cur.execute("select gegenstand.name, gegenstand.effecte, gegenstand.beschreibung from gegenstand join inventar on id=gid where pid= " + user + ";")
 
 def invenAttacke(user):
     cur = get_db().cursor()
-    return cur.execute("select attacke.Name, attacke.Attacke, attacke.Schaden, attacke.Würfel from attacke, invenAttacke using('aid') where pid= " + user + ";")
+    return cur.execute("select attacke.Name, attacke.Attacke, attacke.Schaden, attacke.Würfel from attacke join invenAttacke on id = aid where pid= " + user + ";")
 
 def invenZauber(user):
     cur = get_db().cursor()
     return cur.execute("""select zauber.Name, zauber.Englisch, zauber.Stufe,
     zauber.Klasse, zauber.schule, zauber.Ritual, zauber.Zeit, zauber.Komp,
-    zauber.Konz, zauber.Quelle from zauber,
-    invenZauber using('zid') where pid= """ + user + ";")
+    zauber.Konz, zauber.Quelle from zauber join invenZauber on id=zid where pid= """ + user + ";")
 
 def pers(second, table):
     res= hilfRes(table)
     res2= hilfRes2(table)
-    return render_template(second, zeilen=res, len=len(res2), headline=res2)
+    return render_template(second, zeilen=res, len=len(res2), headline=res2, table=table)
 
 
 def persPlus(second, table, weiter):
     cur = get_db().cursor()
     res = cur.execute("select * from " + table + ";")
     res2 = list(map(lambda x: x[0], res.description))
-    return render_template(second, zeilen=res, len=len(res2), headline=res2, user=weiter)
+    return render_template(second, zeilen=res, len=len(res2), headline=res2, user=weiter, table=table)
+
+def bin(bin, table):
+    db = get_db()
+    cur = db.cursor()
+    res = cur.execute("delete from " + table + " where id = " + bin + ";")
+    db.commit()
 
 def anmelden(second, link, table):
     db = get_db()
@@ -81,7 +86,7 @@ def attacken(user):
     titleG = hilfRes2("gegenstand")
     db = get_db()
     cur = db.cursor()
-    userName = cur.execute("select Name from party where pid ="+ user + ";").fetchone()
+    userName = cur.execute("select Name from party where id ="+ user + ";").fetchone()
     attacke = invenAttacke(user)
     titleA = hilfRes2("attacke")
     zauber = invenZauber(user)
@@ -98,10 +103,10 @@ def attacken(user):
 def schaden(user, abzug, link):
     db = get_db()
     cur = db.cursor()
-    res = cur.execute("select leben from party where pid ="+ user + ";")
+    res = cur.execute("select leben from party where ID ="+ user + ";")
     db = get_db()
     cur = db.cursor()
-    MaxLeben = cur.execute("select MaxLeben from party where pid ="+ user + ";")
+    MaxLeben = cur.execute("select MaxLeben from party where id ="+ user + ";")
     res = list(map(lambda x: x[0], res))
     res = list(map(str, res[0:]))
     res = int(res[0])
@@ -114,9 +119,8 @@ def schaden(user, abzug, link):
         res=0
     elif(res > MaxLeben):
         res=MaxLeben
-    cur.execute("update party set leben="+ str(res) +" where pid = "+ user +";")
+    cur.execute("update party set leben="+ str(res) +" where id = "+ user +";")
     db.commit()
     party = hilfRes("party")
     res2 = hilfRes2("party")
-    res
     return redirect("/"+link)

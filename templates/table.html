@@ -1,32 +1,47 @@
 {% extends 'index.html' %}
 
 {% block stylesheet %}
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}" >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}">
 {% endblock %}
 
 {% block content %}
-  <h2 class="hasShadow">Übersicht</h2>
+<h2 class="hasShadow">Übersicht</h2>
 
-  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-  <table id="myTable">
-    <tr class="header">
-      {% for HL in headline[1:] %}
-        <th>
-          <h1>{{ HL }}</h1>
-        </th>
-      {% endfor %}
-    </tr>
-    {% for personen in zeilen %}
-      <tr>
-        {% for person in personen[1:] %}
-          <td> {{ person }} </td>
-        {% endfor %}
-      </tr>
+<table id="myTable">
+  <tr class="header">
+
+    {% for HL in headline[1:] %}
+    <th>
+      <h1>{{ HL }}</h1>
+    </th>
     {% endfor %}
-  </table>
 
-  <script type="text/javascript" src="{{ url_for('static', filename='javascript/table.js') }}">
-  </script>
+    <th></th>
+  </tr>
+
+  {% for personen in zeilen %}
+  <tr>
+
+    {% for person in personen[1:] %}
+    <td> {{ person }} </td>
+    {% endfor %}
+
+    <td class="row">
+      <form id="bin_{{personen[0]}}" class="" action="/table/{{table}}" method="post">
+        <input class="bin icon" type="submit" onclick="return del('bin')" src="{{ url_for('static', filename='css/images/bin.svg') }}" width="30px" height="30px" name="bin" value="{{personen[0]}}">
+      </form>
+      <form id="pencil_{{personen[0]}}" action="/table/{{table}}" method="post">
+        <input class="pencil icon" type="submit" src="{{ url_for('static', filename='css/images/pencil.svg') }}" width="30px" height="30px" name="pencil" value="{{personen[0]}}">
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/table.js') }}">
+</script>
 {% endblock %}
