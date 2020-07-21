@@ -41,7 +41,9 @@ To install Flask with pip, enter the following command in the command line:
 Go to the this directory in your command-line interpreter and 
 enter the following command to start the program:
 
-    py index.py or python3 index.py
+    py index.py 
+or 
+    python3 index.py
     
 Now enter in the address bar:
 
