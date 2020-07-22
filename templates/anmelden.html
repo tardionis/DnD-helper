@@ -4,8 +4,8 @@
 <article class="maincontent">
   <h1>Ergrenze {{table}}</h1>
   <form class="for_anmelden" method="POST" action="/{{link}}">
-    {% for hl in headline[1:] %}
-      <label for="in_anmelden">{{hl}}:</label><input type="text" name={{hl}} placeholder={{hl}} class="in_anmelden"><br>
+    {% for i in range(1, headline|length) %}
+      <label for="in_anmelden">{{headline[i]}}:</label><input type="text" name={{headline[i]}} placeholder={{placeholder[i]}} class="in_anmelden"><br>
     {% endfor %}
     <input type="submit" name="but_anmelden" text="senden">
   </form>
