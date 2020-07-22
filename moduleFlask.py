@@ -31,17 +31,17 @@ def curToStringTitle(liste):
 
 def invenGegenstand(user):
     cur = get_db().cursor()
-    return cur.execute("select gegenstand.name, gegenstand.effecte, gegenstand.beschreibung from gegenstand join inventar on id=gid where pid= " + user + ";")
+    return cur.execute("select gegenstand.name, gegenstand.effecte, gegenstand.beschreibung from gegenstand join inventar on id=gid where pid='{}';".fonmat(user))
 
 def invenAttacke(user):
     cur = get_db().cursor()
-    return cur.execute("select attacke.Name, attacke.Attacke, attacke.Schaden, attacke.Würfel from attacke join invenAttacke on id = aid where pid= " + user + ";")
+    return cur.execute("select attacke.Name, attacke.Attacke, attacke.Schaden, attacke.Würfel from attacke join invenAttacke on id = aid where pid='{}';".fonmat(user))
 
 def invenZauber(user):
     cur = get_db().cursor()
     return cur.execute("""select zauber.Name, zauber.Englisch, zauber.Stufe,
     zauber.Klasse, zauber.schule, zauber.Ritual, zauber.Zeit, zauber.Komp,
-    zauber.Konz, zauber.Quelle from zauber join invenZauber on id=zid where pid= """ + user + ";")
+    zauber.Konz, zauber.Quelle from zauber join invenZauber on id=zid where pid='{}';""".fonmat(user))
 
 def pers(second, table):
     res= hilfRes(table)
@@ -51,26 +51,26 @@ def pers(second, table):
 
 def persPlus(second, table, weiter):
     cur = get_db().cursor()
-    res = cur.execute("select * from " + table + ";")
+    res = cur.execute("select * from '{}';".format(table))
     res2 = list(map(lambda x: x[0], res.description))
     return render_template(second, zeilen=res, len=len(res2), headline=res2, user=weiter, table=table)
 
 def bin(bin, table):
     db = get_db()
     cur = db.cursor()
-    res = cur.execute("delete from " + table + " where id = " + bin + ";")
+    res = cur.execute("delete from '{}' where id = '{}';".format(table, bin))
     if table == 'attacke':
-        res = cur.execute("delete from invenAttacke where aid = " + bin + ";")
+        res = cur.execute("delete from invenAttacke where aid='{}';".fonmat(bin))
     if table == 'zauber':
-        res = cur.execute("delete from invenZauber where zid = " + bin + ";")
+        res = cur.execute("delete from invenZauber where zid='{}';".fonmat(bin))
     if table == 'gegenstand':
-        res = cur.execute("delete from inventar where gid = " + bin + ";")
+        res = cur.execute("delete from inventar where gid='{}';".fonmat(bin))
     db.commit()
 
 def anmelden(second, link, table):
     db = get_db()
     cur = db.cursor()
-    res = cur.execute("select * from " + table + ";")
+    res = cur.execute("select * from '{}';".format(table))
     res2 = list(map(lambda x: x[0], res.description))
     res3 = map(str, res2[1:])
     if request.method == "POST":
@@ -79,7 +79,7 @@ def anmelden(second, link, table):
             werte = werte + [request.form[wert]]
         wert2 = "','".join(werte)
         res2str = "','".join(map(str, res2[1:]))
-        cur.execute("insert into "+ table +"('"+res2str+"') values ('"+ wert2 +"');")
+        cur.execute("insert into '{}'('{}') values ('{}');".format(table, res2str, wert2))
         db.commit()
     else:
         return render_template(second, headline=res2, link=link, table=table)
@@ -92,7 +92,7 @@ def attacken(user):
     titleG = hilfRes2("gegenstand")
     db = get_db()
     cur = db.cursor()
-    userName = cur.execute("select Name from party where id ="+ user + ";").fetchone()
+    userName = cur.execute("select Name from party where id='{}';".fonmat(user)).fetchone()
     attacke = invenAttacke(user)
     titleA = hilfRes2("attacke")
     zauber = invenZauber(user)
@@ -109,10 +109,10 @@ def attacken(user):
 def schaden(user, abzug, link):
     db = get_db()
     cur = db.cursor()
-    res = cur.execute("select leben from party where ID ="+ user + ";")
+    res = cur.execute("select leben from party where id='{}';".fonmat(user))
     db = get_db()
     cur = db.cursor()
-    MaxLeben = cur.execute("select MaxLeben from party where id ="+ user + ";")
+    MaxLeben = cur.execute("select MaxLeben from party where id='{}';".fonmat(user))
     res = list(map(lambda x: x[0], res))
     res = list(map(str, res[0:]))
     res = int(res[0])
@@ -125,7 +125,7 @@ def schaden(user, abzug, link):
         res=0
     elif(res > MaxLeben):
         res=MaxLeben
-    cur.execute("update party set leben="+ str(res) +" where id = "+ user +";")
+    cur.execute("update party set leben='{}' where id='{}';".fonmat(str(res),user))
     db.commit()
     party = hilfRes("party")
     res2 = hilfRes2("party")
