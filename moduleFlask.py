@@ -90,15 +90,15 @@ def edit(second, link, table, ident): # makes every edit template
     cur = db.cursor()
     res = cur.execute("select * from '{}';".format(table))
     res2 = list(map(lambda x: x[0], res.description))
-    res3 = map(str, res2[1:])
+    res3 = list(map(str, res2[1:]))
     res = cur.execute("select * from '{}' where id='{}';".format(table, ident)).fetchone()
     if request.method == "POST":
         werte = []
-        for wert in res3:
-            werte = werte + [request.form[wert]]
-        wert2 = "','".join(werte)
-        res2str = "','".join(map(str, res2[1:]))
-        cur.execute("insert into '{}'('{}') values ('{}');".format(table, res2str, wert2))
+        for i in range(0, len(res3)):
+            werte.append("{}='{}'".format(res3[i], request.form[res3[i]]))
+            neueWert = ','.join(werte)
+        sql = "update '{}' set {} where id='{}';".format(table, neueWert, ident)
+        cur.execute(sql)
         db.commit()
     else:
         return render_template(second, headline=res2, placeholder=res, link=link, table=table)

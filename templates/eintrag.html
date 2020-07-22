@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<article class="maincontent">
+  <h1>Ergrenze {{table}}</h1>
+  <form class="for_anmelden" method="POST" action="/{{link}}">
+    {%block input%}{%endblock%}
+    <input type="submit" name="but_anmelden" text="senden">
+  </form>
+</article>
+{% endblock %}

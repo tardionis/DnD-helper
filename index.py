@@ -68,14 +68,17 @@ def table(table):
         if 'bin' in request.form:
             garbage = request.form["bin"]
             bin(garbage, table)
-        if 'pancil' in request.form:
+        if 'pencil' in request.form:
             pencil = request.form["pencil"]
             return redirect("/anmelden/{}/{}".format(table, pencil))
+            print('hallo')
+        print(1)
+    print(2)
     return pers("table.html", table)
 
 @app.route("/anmelden/<table>/<user>",methods = ["POST","GET"])
 def editieren(table, user):
-    return edit("anmelden.html", "anmelden/{}/{}".format(table, user), table, user)
+    return edit("edit.html", "anmelden/{}/{}".format(table, user), table, user)
 
 @app.route("/anmelden/<table>",methods = ["POST","GET"])
 def partymelden(table):
