@@ -1,0 +1,52 @@
+input {
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  box-shadow: 0px 8px 16px 0px gray;
+}
+
+.divTable {
+  font-size: 16px;
+  line-height: 16px;
+  padding: 7px;
+  display: inline-flex;
+  text-align: left;
+}
+
+.divTableRow {
+  display: flex;
+  flex-direction: column;
+  padding-right: 7px;
+}
+
+.kampfbtn {
+  max-width: 20em;
+  color: white;
+  background-color: #000000;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  box-shadow: 0px 8px 16px 0px gray;
+}
+
+.kampfbtn:hover {
+  padding: 3px 11px;
+  border: 5px solid white;
+}
+
+.kampfbtn:active {
+  outline: None;
+  background: #222222;
+  border: 5px solid white;
+}
+
+.divInput {
+  display: flex;
+  flex-direction: row;
+}
+
+.divTableBody {
+  display: flex;
+  flex-direction: row;
+}

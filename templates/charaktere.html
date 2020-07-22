@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<article class="maincontent">
+    <h1>Bisher Registrierte connections</h1><br>
+    <button type="button" name="anmelden"><a href="./person"> anmelden  </a></button>
+    <table onloadeddata="sortTable()">
+      <tr>
+        {% for headline in headline %}
+          <th>
+            <h1>{{ headline }}</h1>
+          </th>
+        {% endfor %}
+      </tr>
+        {% for person in person %}
+          <tr>
+            {% for person in person %}
+              <td> {{ person }} </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+</article>
+{% endblock %}

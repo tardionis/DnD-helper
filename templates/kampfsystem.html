@@ -1,0 +1,136 @@
+{% extends 'index.html' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/kampfsystem.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="divTable">
+  <div class="divTableBody">
+
+    <div class="divTableRow">
+      <button class="kampfbtn" onclick="">
+        Add Charakter
+      </button>
+      <div class="">
+        <h2>Angreifer:</h2>
+      </div>
+      {% for people in zeilen %}
+      <!-- id="defaultOpen"-->
+      <form class="" action="/kampfsystem" method="POST">
+        <button class="kampfbtn" type="submit" name="user" value={{people[0]}}>
+          {% for i in range(1, len) %}
+          {{headline[i]}} : {{people[i]}}<br>
+          {% endfor %}
+        </button>
+      </form>
+      {% endfor %}
+      <a href="./kampfsystem"><button class="kampfbtn">
+          <- Character wahl </button></a>
+    </div>
+
+
+    {% if user %}
+    <div class="divTableRow">
+      <span class="">
+        <h2>Opfer:</h2>
+      </span>
+      {% for opfer in dieOpfer %}
+      <!-- id="defaultOpen" -->
+      <button class="kampfbtn" name="" value={{opfer[0]}} onclick="opferWahl('{{opfer[0]}}', '{{opfer[4]}}')">
+        {% for i in range(1, len) %}
+        {{opferHeadline[i]}} : {{opfer[i]}}<br>
+        {% endfor %}
+      </button>
+      {% endfor %}
+      <button class="kampfbtn" onclick="reverseOpferWahl()">
+        <- Opfer wahl </button>
+    </div>
+
+
+    <div id="gegenstand" class="divTableRow" style="display:none">
+      <button class="kampfbtn">Add Gegenstand</button>
+      <div class="">
+        <h2>Gegenstände:</h2>
+      </div>
+      {% for people in gegenstand %}
+      <!-- id="defaultOpen"-->
+      <button class="kampfbtn" name="user" value={{user}} title="{{people[2]}}">
+        {% for i in range(0, len-3) %}
+        {{headlineGegenstand[i+1]}} : {{people[i]}}<br>
+        {% endfor %}
+      </button>
+      {% endfor %}
+      <button class="kampfbtn" onclick="getInvisible('treffer')">
+        <- Attacken wahl </button>
+    </div>
+    <div id="attacke" class="divTableRow" style="display:none">
+
+
+      {% if attacke %}
+      <div class="">
+        <h2>Attacke:</h2>
+      </div>
+      <div class="divInput">
+        <input id="attackWurf" class="text" type="number" name="Attacke" placeholder="Wurf muss größer/gleich AC sein">
+        <button id="ac" class="" type="submit" name="" onclick="treffer()" hidden></button>
+        <input type="submit" name="Button" onclick="treffer()" value="Senden">
+      </div>
+      <button class="kampfbtn" onclick="">
+        Add Attacke
+      </button>
+      <div class="">
+        <h2>Attacken:</h2>
+      </div>
+      {% for people in attacke %}
+      <!-- id="defaultOpen"-->
+      <button class="kampfbtn" type="submit" name="user" value={{user}} onclick="attackWahl('{{people[1]}}', '{{people[3]}} + {{people[2]}}')">
+        {% for i in range(0, len-1) %}
+        {{headlineAttacke[i+1]}} : {{people[i]}}<br>
+        {% endfor %}
+      </button>
+      {% endfor %}
+      {% endif %}
+
+
+      {% if zauber %}
+      <a href="#"><button class="kampfbtn">
+          Add Zauber
+        </button></a>
+      <div class="">
+        <h2>Zauber:</h2>
+      </div>
+      {% for people in zauber %}
+      <!-- id="defaultOpen"-->
+      <button class="kampfbtn" type="submit" name="user" value={{user}}>
+        {% for i in range(1, len) %}
+        {{headlineZauber[i]}} : {{people[i-1]}}<br>
+        {% endfor %}
+      </button>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+
+    <div id="treffer" class="divTableRow" style="display:none">
+      <form class="" action="/kampfsystem" method="post">
+        <div class="">
+          <h2>Schaden:</h2>
+        </div>
+        <div class="divInput">
+          <input id="damageWurf" class="text" type="number" placeholder="Heilung ist negativ" name="schaden">
+          <input id="opfer" type="text" name="opfer" value="" hidden>
+          <input type="submit">
+        </div>
+      </form>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/kampfsystem.js') }}">
+</script>
+{% endblock %}
