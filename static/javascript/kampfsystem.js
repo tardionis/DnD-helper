@@ -19,6 +19,7 @@ function attackWahl(att, dam) {
 function treffer() {
   var ac = document.getElementById("ac").value;
   var attackWurf = document.getElementById("attackWurf").value;
+  ac = parseInt(ac);
   if (ac <= attackWurf) {
     getVisible("treffer");
   } else {
