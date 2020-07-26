@@ -1,12 +1,12 @@
 # DnD-helper
 
-This is a DnD helper, who should help me and later the players in my campaign to remember things like prices, 
-names and other things during the game that can be quickly forgotten in the course of a longer campaign. Towards the end, 
+This is a DnD helper, who should help me and later the players in my campaign to remember things like prices,
+names and other things during the game that can be quickly forgotten in the course of a longer campaign. Towards the end,
 it should even be possible to create and edit your own lists.
 
 ## Motivation
 
-I decided to write this program because I couldn't find a DnD helper who could satisfactorily meet my needs. 
+I decided to write this program because I couldn't find a DnD helper who could satisfactorily meet my needs.
 I decided to put my software on a server so that I could share it with others on my network or even later on a website.
 But a lot has to happen before that happens.
 
@@ -35,21 +35,21 @@ You can find and install python [here](https://www.python.org).
 To install Flask with pip, enter the following command in the command line:
 
     pip install -U Flask
-    
-## Getting started 
 
-Go to the this directory in your command-line interpreter and 
+## Getting started
+
+Go to the this directory in your command-line interpreter and
 enter the following command to start the program:
 
-    py index.py 
-or 
-    
+    py index.py
+or
+
     python3 index.py
-    
+
 Now enter in the address bar:
 
     http://localhost:8080
-    
+
 You should now be able to see and use the DnD helper.
 
 ## Features
@@ -60,13 +60,13 @@ You should now be able to see and use the DnD helper.
 
 * The ability to add new spells, attacks, items etc. to the lists.
 
-## Planned features
-
 * Remove items from lists
 
 * Edit the items in the lists
 
-* Select the order of the fighters beforehand in the combat system.
+## Planned features
+
+* Select the order of the fighters beforehand the combat.
 
 * Individual search for each list.
 
