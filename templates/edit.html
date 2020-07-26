@@ -1,0 +1,7 @@
+{%extends 'eintrag.html'%}
+
+{% block input %}
+{% for i in range(1, headline|length) %}
+  <label for="in_anmelden">{{headline[i]}}:</label><input type="text" name={{headline[i]}} placeholder={{placeholder[i]}} class="in_anmelden" value="{{placeholder[i]}}"><br>
+{% endfor %}
+{% endblock %}
