@@ -1,0 +1,11 @@
+{% extends 'table.html' %}
+
+{% block add %} onclick="adding({{personen[0]}})" {% endblock %}>
+
+{% block addForm %}
+<form id="addingForm" class="" action="/table/{{table}}" method="post">  </form>
+{% endblock %}
+
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/table.js') }}">
+</script>
+{% endblock %}

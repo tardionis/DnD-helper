@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block stylesheet %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+  <h2>Neue Liste:</h2>
+  <form class="" action="/" method="get">
+    <label class="w3-margin-right" for="list_name">Name der Liste</label><input id="list_name" type="text" name="title" ><br>
+    <ul id="column"><li> <!--They have to stay next to each other-->
+        <input type="text" name="column" placeholder="Titel">
+        <select name="type" id="type">
+          <option value="1">Text</option>
+          <option value="2">Nummer</option>
+        </select>
+      </li></ul>
+      <i class="w3-xxlarge fa fa-plus w3-margin-right" onclick="addColumn()"></i>
+      <button class="w3-black w3-btn w3-margin-bottom" type="submit">Liste Erstellen</button>
+  </form>
+
+  <script>
+
+  function addColumn() {
+  var itm = document.getElementById("column").lastChild;
+  var cln = itm.cloneNode(true);
+  cln.childNodes[3].value = "";
+  document.getElementById("column").appendChild(cln);
+}
+
+  </script>
+{% endblock %}

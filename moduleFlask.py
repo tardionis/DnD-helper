@@ -149,3 +149,5 @@ def schaden(user, abzug, link): # handels damage an partymembers
     party = hilfRes("party")
     res2 = hilfRes2("party")
     return redirect("/"+link)
+
+# def erstelle_liste() # adding new lists

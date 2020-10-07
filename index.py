@@ -7,7 +7,7 @@ from moduleFlask import *
 
 app = Flask(__name__)
 #wenn ich mit dieser Datei öffne heißt die app "_main_"
-app.config['DEBUG'] = False
+app.config['DEBUG'] = True
 #Debug mode True
 app.config['SECRET_KEY'] = 'super-secret'
 #Key = super-secret
@@ -61,6 +61,13 @@ def Kampfsystem():
         else:
             return render_template("<script> alert('scheiße');</script>")
     return pers("kampfsystem.html", "party")
+
+## @app.route("/kampfsystem/reihenfolge")
+## def reihenfolge():
+
+@app.route("/addList")
+def addList():
+    return render_template("newList.html")
 
 @app.route("/table/<table>",methods = ["POST","GET"])
 def table(table):

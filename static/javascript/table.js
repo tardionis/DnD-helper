@@ -18,8 +18,13 @@ function myFunction() {
   }
 }
 
-
 function del(bin) {
   var really = confirm(bin);
   return really;
+}
+
+function adding(id) {
+  form = document.getElementById("addingForm");
+  form.value = id;
+  form.submit();
 }

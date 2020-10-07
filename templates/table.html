@@ -31,16 +31,19 @@
 
     <td class="row">
       <form id="bin_{{personen[0]}}" class="" action="/table/{{table}}" method="post">
-        <input class="bin icon" type="submit" onclick="return del('bin')" src="{{ url_for('static', filename='css/images/bin.svg') }}" width="30px" height="30px" name="bin" value="{{personen[0]}}">
+        <input class="bin icon" type="submit" onclick="return del('bin')" src="{{ url_for('static', filename='css/images/bin.svg') }}" width="30px" height="30px" name="bin" value="{{personen[0]}}" alt="bin">
       </form>
       <form id="pencil_{{personen[0]}}" action="/table/{{table}}" method="post">
-        <input class="pencil icon" type="submit" src="{{ url_for('static', filename='css/images/pencil.svg') }}" width="30px" height="30px" name="pencil" value="{{personen[0]}}">
+        <input class="pencil icon" type="submit" src="{{ url_for('static', filename='css/images/pencil.svg') }}" width="30px" height="30px" name="pencil" value="{{personen[0]}}" alt="pencil">
       </form>
     </td>
   </tr>
   {% endfor %}
 
 </table>
+
+{% block addForm %}
+{% endblock %}
 
 <script type="text/javascript" src="{{ url_for('static', filename='javascript/table.js') }}">
 </script>
